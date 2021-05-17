@@ -1,24 +1,26 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Route } from 'react-router-dom';
+import {Documentation} from "./components/Documentation/Documentation";
+import {Currency} from "./components/CurrencyPage/Currency";
+import {Main} from "./components/MainPage/Main";
+import {makeStyles} from "@material-ui/core";
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        fontFamily: theme.typography.fontFamily
+    }
+}))
 
 function App() {
+    const classes = useStyles({});
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={classes.root}>
+        <Route exact path='/'
+               render={() => <Documentation/>}/>
+        <Route path='/main'
+               render={() => <Main/>}/>
+        <Route path='/currency'
+               render={() => <Currency/>}/>
     </div>
   );
 }
