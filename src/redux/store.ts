@@ -5,11 +5,15 @@ import {currencyWatcher} from "./currency/sagas";
 import {cryptoCurrencyReducer} from "./cryptoCyrrency/reducer";
 import rootSaga from "./sagaRoot";
 import {covidReducer} from "./covid/reducer";
+import {weatherReducer} from "./weather/reducer";
+import {stocksReducer} from "./stocks/reducer";
 
 const rootReducer = combineReducers({
     currencyPage: currencyReducer,
     cryptoCurrencyPage: cryptoCurrencyReducer,
-    covidReducer: covidReducer,
+    covidPage: covidReducer,
+    weatherPage: weatherReducer,
+    stocksPage: stocksReducer
 })
 
 type RootReducerType = typeof rootReducer;
