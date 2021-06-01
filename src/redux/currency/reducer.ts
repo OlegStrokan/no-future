@@ -11,19 +11,19 @@ type InitialStateType = typeof initialState
 export type ActionsTypes = InferActionsTypes<typeof currencyActions>
 
 export const currencyReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
-switch (action.type) {
-    case 'REQUEST_CURRENCY_DATA': {
-        return {...state, loading: true}
+    switch (action.type) {
+        case 'REQUEST_CURRENCY_DATA': {
+            return {...state, loading: true}
+        }
+        case 'REQUEST_CURRENCY_DATA_SUCCESS': {
+            return {...state, cryptoCurrencyData: action.cryptoCurrencyData, loading: false, error: false}
+        }
+        case 'REQUEST_CURRENCY_DATA_FAILED': {
+            return {...state, loading: false, error: true}
+        }
+        default:
+            return state
     }
-    case 'REQUEST_CURRENCY_DATA_SUCCESS': {
-        return {...state, cryptoCurrencyData: action.cryptoCurrencyData,  loading: false,
-            error: false,}
-    }
-    case 'REQUEST_CURRENCY_DATA_FAILED': {
-        return {...state, loading: false, error: true, }
-    }
-    default: return state
-}
 }
 
 export const currencyActions = {

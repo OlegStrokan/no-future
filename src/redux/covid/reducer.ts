@@ -1,8 +1,9 @@
 import {InferActionsTypes} from "../store";
+import {CovidDataType} from "../../types/covid-types";
 
 const initialState = {
-    totalCases: null as any | null,
-    todayCases: null as any | null,
+    totalCasesData: null as CovidDataType | null,
+    todayCasesData: null as CovidDataType | null,
     loading: false,
     error: false,
 }
@@ -16,12 +17,10 @@ switch (action.type) {
         return {...state, loading: true}
     }
     case 'REQUEST_TOTAL_CASES_SUCCESS': {
-        return {...state, totalCases: action.totalCases,  loading: false,
-            error: false,}
+        return {...state, totalCasesData: action.totalCasesData,  loading: false, error: false,}
     }
     case 'REQUEST_TODAY_CASES_SUCCESS': {
-        return {...state, totalCases: action.todayCases,  loading: false,
-            error: false,}
+        return {...state, todayCasesData: action.todayCasesData,  loading: false, error: false,}
     }
     case 'REQUEST_CURRENCY_DATA_FAILED': {
         return {...state, loading: false, error: true, }
@@ -32,9 +31,10 @@ switch (action.type) {
 
 export const covidActions = {
     requestCases: ( ) => ({type: 'REQUEST_CASES_DATA'} as const),
-    requestTotalCasesSuccess: (totalCases: any ) => ({type: 'REQUEST_TOTAL_CASES_SUCCESS', totalCases: totalCases} as const),
-    requestTodayCasesSuccess: (todayCases: any ) => ({type: 'REQUEST_TODAY_CASES_SUCCESS', todayCases: todayCases} as const),
+    requestTotalCasesSuccess: (totalCases: any ) => ({type: 'REQUEST_TOTAL_CASES_SUCCESS', totalCasesData: totalCases} as const),
+    requestTodayCasesSuccess: (todayCases: any ) => ({type: 'REQUEST_TODAY_CASES_SUCCESS', todayCasesData: todayCases} as const),
     requestCasesFailed: ( ) => ({type: 'REQUEST_CURRENCY_DATA_FAILED'} as const),
-    fetchedCasesData: ( name: string ) => ({type: 'FETCHED_TOTAL_CASES', name} as const),
+    fetchedTotalCasesData: ( name: string ) => ({type: 'FETCHED_TOTAL_CASES', name} as const),
+    fetchedTodayCasesData: ( name: string ) => ({type: 'FETCHED_TODAY_CASES', name} as const),
 }
 

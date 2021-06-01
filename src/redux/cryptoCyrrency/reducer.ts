@@ -1,8 +1,8 @@
-import {CurrencyType} from "../../types/currency-types";
 import {InferActionsTypes} from "../store";
+import {CryptoCurrencyType} from "../../types/cryptoCurrency-types";
 
 const initialState = {
-    cryptoCurrencyData: null as any | null,
+    cryptoCurrencyData: null as CryptoCurrencyType | null,
     loading: false,
     error: false,
 }
@@ -16,8 +16,7 @@ switch (action.type) {
         return {...state, loading: true}
     }
     case 'REQUEST_CRYPTO_CURRENCY_DATA_SUCCESS': {
-        return {...state, cryptoCurrencyData: action.cryptoCurrencyData,  loading: false,
-            error: false,}
+        return {...state, cryptoCurrencyData: action.cryptoCurrencyData,  loading: false, error: false,}
     }
     case 'REQUEST_CRYPTO_CURRENCY_DATA_FAILED': {
         return {...state, loading: false, error: true, }

@@ -1,5 +1,5 @@
 
-type valuteType = {
+type ValuteType = {
     CharCode: string;
     ID: string;
     Name: string;
@@ -14,5 +14,5 @@ export type CurrencyType = {
     PreviousDate: string,
     PreviousURL: string,
     Timestamp: string,
-    valute: valuteType[],
+    valute: ValuteType[],
 }

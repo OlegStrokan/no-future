@@ -5,6 +5,9 @@ const initialState = {
     weatherData: null as WeatherData | null,
     places: ['London','Prague'] as Array<string>,
     activePlace: 0,
+    loading: false,
+    error: false,
+
 }
 
 type InitialStateType = typeof initialState
@@ -12,14 +15,20 @@ type ActionsTypes = InferActionsTypes<typeof weatherActions>
 
 export const weatherReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
     switch(action.type) {
+        case 'REQUEST_WEATHER_DATA': {
+            return {...state,  loading: true, error: false}
+        }
         case 'SET_WEATHER_DATA': {
-            return { ...state, weatherData: action.weatherData}
+            return { ...state, weatherData: action.weatherData, loading: false, error: false}
         }
         case 'SET_ACTIVE_PLACE': {
-            return { ...state, activePlace: action.activePlace}
+            return { ...state, activePlace: action.activePlace,  loading: false, error: false}
         }
         case 'SET_NEW_PLACE': {
-            return {...state, places: [...state.places, action.newPlace]}
+            return {...state, places: [...state.places, action.newPlace], loading: false, error: false}
+        }
+        case 'REQUEST_WEATHER_DATA_FAILED': {
+            return {...state,  loading: false, error: true}
         }
         default: return state
     }

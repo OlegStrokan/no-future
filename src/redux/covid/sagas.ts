@@ -16,7 +16,7 @@ export function* getTotalCasesData(name: any): any {
 export function* getTodayCasesData(name: any): any {
     try {
         yield put(covidActions.requestCases())
-        const data = yield call(covidDataAPI.getTodayCases, name)
+        const data = yield call(covidDataAPI.getTodayCases, name.name)
         yield put(covidActions.requestTodayCasesSuccess(data))
     }
     catch (error) {
